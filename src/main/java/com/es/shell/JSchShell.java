@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-public class JSchShellExecutor implements Shell {
+public class JSchShell implements Shell {
 
     private static final String STRICT_HOST_KEY_CHECKING = "StrictHostKeyChecking";
 
@@ -29,7 +29,7 @@ public class JSchShellExecutor implements Shell {
 
     private static final String CHANNEL_EXEC = "exec";
 
-    private static final Logger logger = LoggerFactory.getLogger(JSchShellExecutor.class);
+    private static final Logger logger = LoggerFactory.getLogger(JSchShell.class);
 
     @Override
     public ExecuteResult execute(ExecuteRequest request) {
@@ -89,7 +89,7 @@ public class JSchShellExecutor implements Shell {
             Session session = shell.getSession(user, host, port);
             if (StringUtils.isEmpty(request.getPassword())) {
                 logger.debug("Using Public Key auth");
-                session.setConfig(JSchShellExecutor.STRICT_HOST_KEY_CHECKING,
+                session.setConfig(JSchShell.STRICT_HOST_KEY_CHECKING,
                         request.isHostKeyCheckingEnabled() ? YES : NO);
                 shell.setKnownHosts(request.getKnownHostsFile());
                 shell.addIdentity(request.getIdentityFile());
@@ -106,7 +106,7 @@ public class JSchShellExecutor implements Shell {
 
     private ExecuteResult executeCommand(Session session, ExecuteRequest request, int commandIndex) {
         try {
-            ChannelExec channelExec = (ChannelExec) session.openChannel(JSchShellExecutor.CHANNEL_EXEC);
+            ChannelExec channelExec = (ChannelExec) session.openChannel(JSchShell.CHANNEL_EXEC);
             channelExec.setCommand(request.getCommand().get(commandIndex));
 
             channelExec.setInputStream(null);

@@ -4,20 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 @SpringBootApplication
 @Component
 public class EsShellApplication  implements  CommandLineRunner {
 
     @Autowired
-    Shell shell = new JSchShellExecutor();
+    Shell shell = new JSchShell();
 
 
 	public static void main(String[] args) {
