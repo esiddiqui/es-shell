@@ -2,18 +2,12 @@ package com.es.shell;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
 import java.util.HashMap;
 
 
-@SpringBootTest
-//@RunWith(SpringRunner.class)
 public class JSchShellTest {
 
-    //@Autowired
     private Shell shell = new JSchShell();
-
 
     @Test
     public void testBasicConnection() {
@@ -99,10 +93,6 @@ public class JSchShellTest {
         Assert.assertEquals(0,result.getExitStatus());
         Assert.assertEquals(hostName, result.getOut().get(0).trim());
     }
-
-
-
-
 
 }
 

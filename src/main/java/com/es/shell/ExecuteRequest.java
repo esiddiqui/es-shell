@@ -1,7 +1,7 @@
 package com.es.shell;
 
-import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -167,8 +167,8 @@ public class ExecuteRequest {
         }
 
         public ExecuteRequestBuilder command(String command) {
-            Assert.notNull(command,"Command cannot be a null object");
-            Assert.isTrue(command.trim().length()>0,"Command cannot be an empty");
+            Validate.notNull(command,"Command cannot be a null object");
+            Validate.isTrue(command.trim().length()>0,"Command cannot be an empty");
             this.commands.add(command);
             return this;
         }
@@ -181,9 +181,9 @@ public class ExecuteRequest {
 
         public ExecuteRequest build() {
 
-            Assert.notNull(host,"Host name cannot be null");
-            Assert.notNull(userName,"User name cannot be null");
-            Assert.isTrue(!(this.password!=null && this.identityFile!=null),"Both password & identify file cannot be provided at the same time");
+            Validate.notNull(host,"Host name cannot be null");
+            Validate.notNull(userName,"User name cannot be null");
+            Validate.isTrue(!(this.password!=null && this.identityFile!=null),"Both password & identify file cannot be provided at the same time");
 
             if (StringUtils.isEmpty(this.identityFile))
                 this.identityFile = System.getProperty("user.home") + "/.ssh/known_hosts";

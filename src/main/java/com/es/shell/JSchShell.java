@@ -4,11 +4,11 @@ import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Service
+
 public class JSchShell implements Shell {
 
     private static final String STRICT_HOST_KEY_CHECKING = "StrictHostKeyChecking";
@@ -34,9 +34,9 @@ public class JSchShell implements Shell {
     @Override
     public ExecuteResult execute(ExecuteRequest request) {
         logger.debug("execute called with {}", request);
-        Assert.notNull(request,"Execute Request cannot be null");
-        Assert.isTrue(request.getCommand()!=null, "Commands not provided, cannot be null");
-        Assert.isTrue(request.getCommand().size()>=0, "At least one command required");
+
+        Validate.isTrue(request.getCommand()!=null, "Commands not provided, cannot be null");
+        Validate.isTrue(request.getCommand().size()>=0, "At least one command required");
         try {
             Session session = getSession(request);
             session.connect();
@@ -55,9 +55,9 @@ public class JSchShell implements Shell {
     @Override
     public List<ExecuteResult> executeBatch(ExecuteRequest request) {
         logger.debug("executeBatch called with {}", request);
-        Assert.notNull(request,"Execute Request cannot be null");
-        Assert.isTrue(request.getCommand()!=null, "Commands not provided, cannot be null");
-        Assert.isTrue(request.getCommand().size()>=0, "At least one command required");
+        Validate.notNull(request,"Execute Request cannot be null");
+        Validate.isTrue(request.getCommand()!=null, "Commands not provided, cannot be null");
+        Validate.isTrue(request.getCommand().size()>=0, "At least one command required");
         List<ExecuteResult> results = new ArrayList<>();
         try {
             Session session = getSession(request);
@@ -80,7 +80,7 @@ public class JSchShell implements Shell {
 
     private Session getSession(ExecuteRequest request) throws JSchException {
         logger.debug("getSession called");
-        Assert.notNull(request,"Execute Request cannot be null");
+        Validate.notNull(request,"Execute Request cannot be null");
         try {
             String user = request.getUserName();
             String host = request.getHost();

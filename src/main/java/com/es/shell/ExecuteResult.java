@@ -1,6 +1,6 @@
 package com.es.shell;
 
-import org.springframework.util.StringUtils;
+//import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +63,7 @@ public class ExecuteResult {
         private int exitStatus;
 
         public ExecuteResultBuilder addOutLine(String line) {
-            if (!StringUtils.isEmpty(line))
+            if (line!=null && !line.isEmpty())
               this.out.add(line);
             return this;
         }
