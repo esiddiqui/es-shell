@@ -185,8 +185,8 @@ public class ExecuteRequest {
             Validate.notNull(userName,"User name cannot be null");
             Validate.isTrue(!(this.password!=null && this.identityFile!=null),"Both password & identify file cannot be provided at the same time");
 
-            if (StringUtils.isEmpty(this.identityFile))
-                this.identityFile = System.getProperty("user.home") + "/.ssh/known_hosts";
+            if (StringUtils.isEmpty(this.knownHostsFile))
+                this.knownHostsFile = System.getProperty("user.home") + "/.ssh/known_hosts";
 
             if (StringUtils.isEmpty(this.identityFile))
                 this.identityFile = System.getProperty("user.home") + "/.ssh/id_rsa";

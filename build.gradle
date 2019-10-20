@@ -25,9 +25,9 @@ publishing {
 
 dependencies {
 	//implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.apache.commons:commons-lang3:3.9'
-    implementation'com.jcraft:jsch:0.1.55'
-    implementation 'com.hierynomus:sshj:0.27.0'
+    api 'org.apache.commons:commons-lang3:3.9'
+    api 'com.jcraft:jsch:0.1.55'
+    api 'com.hierynomus:sshj:0.27.0'
 
     testImplementation 'junit:junit:4.12'
 }
