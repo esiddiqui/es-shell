@@ -23,6 +23,10 @@ To use the library, follow examples below.
 ````
 
 ##### 1.1 Inject the JSch SSH command executor
+**NOTE:** 
+Ignore this section; 
+Spring support removed for now; will be added later with a starter.
+
 For SpringBoot project, you need to add package `com.es.shell` with `@ComponentScan`. 
 ```java
 @ComponentScan({"com.es.shell"})
